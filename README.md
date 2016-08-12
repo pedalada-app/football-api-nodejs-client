@@ -2,15 +2,32 @@
 
 Nodejs client with ECMA6 promises for [a Football Data](https://api.football-data.org)
 
-Template project for Android application
+Usage:
 
-For crashalytics:
-- Initialize key in Manifest.xml
-```xml
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="KEY_HERE"
-            />
+```javascript
+
+var client= require('football-api-nodejs-client')(api-key);
+
 ```
 
-- Remove commented out plugin and dependency
+Client method:
+
+API:
+- getCompetitions([season])
+- getCompetitionById(compId)
+- Return Competition object
+- getFixtures([{timeFrame: ???, competition: [compId, ...]])
+- getFixtureById(fixtureId, [head2head])
+- getTeamById(teamId)
+    Returns Team client object
+
+Competition API:
+- getTeams()
+- getTable([matchday])
+- getFixtures([{matchday: ???, timeFrame: ???}])
+- getInfo()
+
+Team Client object
+- getInfo()
+- getPlayers()
+- getFixtures([{season: ???, timeFrame: ???, venue:  “home”/”away”}])
