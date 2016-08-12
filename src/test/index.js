@@ -61,13 +61,13 @@ describe("Client", function () {
 
 	describe("Competition-Client-Api", function () {
 
-		it("Test team get info", function (done) {
+		it("Test competition get info", function (done) {
 
-			Client.getTeam(57)
+			Client.getCompetitionById(398)
 				  .getInfo()
 				  .then(function (res) {
 
-					  expect(res.data.name).be.equal("Arsenal FC");
+					  expect(res.data.caption).be.equal("Premier League 2015/16");
 
 					  done();
 
@@ -80,34 +80,62 @@ describe("Client", function () {
 
 		});
 
-		it("Test team get players", function (done) {
+		it("Test competition get table", function (done) {
 
-			Client.getTeam(57)
-				  .getPlayers()
+			Client.getCompetitionById(398)
+				  .getTable(10)
 				  .then(function (res) {
 
-					  expect(res.data.players).be.a("array");
+					  expect(res.data.standing[0].team).be.equal("ManCity");
 
 					  done();
 
-				  });
+				  })
+				.catch((function (err) {
+
+					console.error(err);
+
+				}));
 
 		});
 
-		it("Test team get fixtures ", function (done) {
+		it("Test competition get fixtures ", function (done) {
 
-			Client.getTeam(57)
-				  .getFixtures()
+			Client.getCompetitionById(398)
+				  .getFixtures({matchday: 8})
 				  .then(function (res) {
 
-					  expect(res.data.fixtures).be.a("array");
+					  expect(res.data.fixtures[0].id).be.equal(147011);
 
 					  done();
 
-				  });
+				  })
+				.catch((function (err) {
+
+					console.error(err);
+
+				}));
 
 		});
 
+		it("Test competition get team ", function (done) {
+
+			Client.getCompetitionById(398)
+				.getTeams()
+				.then(function (res) {
+
+					expect(res.data.teams[0].name).be.equal("Manchester United FC");
+
+					done();
+
+				})
+				.catch((function (err) {
+
+					console.error(err);
+
+				}));
+
+		});
 	});
 
 });
