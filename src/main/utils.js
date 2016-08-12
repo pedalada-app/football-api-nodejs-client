@@ -21,7 +21,7 @@ function getOptions(apiKey, resource, queryParams) {
 function mergeResources(response) {
 
 	return {
-		data: response.body,
+		data: JSON.parse(response.body),
 		metadata: {
 			requestCount: response.headers['x-requests-available'],
 			requestCountReset: response.headers['x-requestcounter-reset']
