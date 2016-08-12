@@ -1,6 +1,10 @@
 "use strict";
 
-var makeRequest = require('./utils');
+var makeRequest = require('./utils').makeRequest;
+
+var TeamClient = require('./teams');
+
+var CompetitionClient = require('./competition');
 
 class FootballApiClient {
 
@@ -21,7 +25,7 @@ class FootballApiClient {
 
 	getCompetitionById(compId) {
 
-		return new Competition(this.apiKey, compId);
+		return new CompetitionClient(this.apiKey, compId);
 
 	}
 

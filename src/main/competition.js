@@ -1,5 +1,6 @@
+"use strict";
 
-var makeRequest = require('./utils');
+var makeRequest = require('./utils').makeRequest;
 
 
 class CompetitionClient {

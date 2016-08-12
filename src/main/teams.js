@@ -1,4 +1,6 @@
-var makeRequest = require('./utils');
+"use strict";
+
+var makeRequest = require('./utils').makeRequest;
 
 class TeamClient {
 
