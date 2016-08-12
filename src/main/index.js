@@ -4,7 +4,10 @@ var request = require('request-promise');
 
 var BASE_URL = "https://api.football-data.org/v1";
 
-var getOptions = function (apiKey, resource) {
+
+var getOptions = function (apiKey, resource, queryParams) {
+
+	queryParams = queryParams || {};
 
 	return {
 		method: 'GET',
@@ -13,17 +16,41 @@ var getOptions = function (apiKey, resource) {
 			'X-Auth-Token': apiKey,
 			'X-Response-Control': "minified"
 		},
-		resolveWithFullResponse: true
+		resolveWithFullResponse: true,
+		qs: queryParams
 	};
 
 };
-
 
 class FootballApiClient {
 
 	constructor(apiKey) {
 
 		this.apiKey = apiKey;
+
+	}
+
+	getCompetitions(season) {
+
+		let queryParams = season ? {season: season} : undefined;
+		let apiResource = "/competitions";
+
+		return makeRequest(this.apiKey, apiResource, queryParams);
+
+	}
+
+	getCompetitionById(compId) {
+
+		return new Competition(this.apiKey, compId);
+
+	}
+
+	getFixures(options) {
+
+		let fixturesResource = "/fixtures";
+	}
+
+	getFixureById(fixtureId, head2head) {
 
 	}
 
@@ -34,6 +61,50 @@ class FootballApiClient {
 	}
 
 }
+
+class Competition {
+
+	constructor(apiKey, id) {
+
+		this.id = id;
+		this.apiKey = apiKey;
+
+	}
+
+	getInfo() {
+
+		let apiResource = "/competitions/" + this.id;
+
+		return makeRequest(this.apiKey, apiResource);
+	}
+
+	getTeams() {
+
+		let apiResource = "/competitions/" + this.id + "/teams";
+
+		return makeRequest(this.apiKey, apiResource);
+	}
+
+	getTable(matchday) {
+
+		let queryParams = matchday ? {matchday: matchday} : undefined;
+		let apiResource = "/competitions/" + this.id + "/leagueTable";
+
+		return makeRequest(this.apiKey, apiResource, queryParams);
+
+	}
+
+	getFixtures(options) {
+
+		let queryParams = options ? options : undefined;
+		let apiResource = "/competitions/" + this.id + "/fixtures";
+
+		return makeRequest(this.apiKey, apiResource, queryParams);
+
+	}
+
+}
+
 
 function mergeResources(response) {
 
@@ -65,7 +136,7 @@ class TeamClientWrapper {
 
 		let apiResource = "/teams/" + this.id;
 
-		return makeRequest(this.apiKey, apiResource, this.apiKey);
+		return makeRequest(this.apiKey, apiResource);
 
 	}
 
