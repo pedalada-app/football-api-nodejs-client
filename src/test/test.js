@@ -1,6 +1,6 @@
 var req = require('../main/index')('');
 
-req.getTeam(57)
+req.getTeamById(57)
    .getInfo()
    .then(function (res) {
 
@@ -8,7 +8,7 @@ req.getTeam(57)
 
    });
 
-req.getTeam(57)
+req.getTeamById(57)
    .getPlayers()
    .then(function (res) {
 
@@ -16,7 +16,7 @@ req.getTeam(57)
 
    });
 
-req.getTeam(57)
+req.getTeamById(57)
    .getFixtures({
 	   venue: "home"
    })

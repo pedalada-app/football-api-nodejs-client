@@ -12,7 +12,7 @@ describe("Client", function () {
 
 		it("Test team get info", function (done) {
 
-			Client.getTeam(57)
+			Client.getTeamById(57)
 				  .getInfo()
 				  .then(function (res) {
 
@@ -25,13 +25,15 @@ describe("Client", function () {
 
 					  console.error(err);
 
-				  })
+					  expect(false).be.equal(true);
+
+				  });
 
 		});
 
 		it("Test team get players", function (done) {
 
-			Client.getTeam(57)
+			Client.getTeamById(57)
 				  .getPlayers()
 				  .then(function (res) {
 
@@ -39,13 +41,20 @@ describe("Client", function () {
 
 					  done();
 
+				  })
+				  .catch(function (err) {
+
+					  console.error(err);
+
+					  expect(false).be.equal(true);
+
 				  });
 
 		});
 
 		it("Test team get fixtures ", function (done) {
 
-			Client.getTeam(57)
+			Client.getTeamById(57)
 				  .getFixtures()
 				  .then(function (res) {
 
@@ -53,9 +62,63 @@ describe("Client", function () {
 
 					  done();
 
+				  })
+				  .catch(function (err) {
+
+					  console.error(err);
+
+					  expect(false).be.equal(true);
+
 				  });
 
 		});
+
+	});
+
+	describe("Fixtures-Api", function () {
+
+
+		it("Test fixtures", function (done) {
+
+			Client.getFixtures()
+				  .then(function (res) {
+
+					  expect(res.data.fixtures).be.a("Array");
+
+					  done();
+
+				  })
+				  .catch(function (err) {
+
+					  console.error(err);
+
+					  expect(false).be.equal(true);
+
+				  });
+
+		});
+
+		it("Test fixtures by id", function (done) {
+
+			Client.getFixturesById(153588)
+				  .then(function (res) {
+
+					  expect(res.data.head2head).be.a("Object");
+					  expect(res.data.fixture).be.a("Object");
+
+					  done();
+
+				  })
+				  .catch(function (err) {
+
+					  console.error(err);
+
+					  expect(false).be.equal(true);
+
+				  });
+
+		});
+
 
 	});
 
@@ -63,7 +126,7 @@ describe("Client", function () {
 
 		it("Test team get info", function (done) {
 
-			Client.getTeam(57)
+			Client.getFixtures(57)
 				  .getInfo()
 				  .then(function (res) {
 
@@ -82,7 +145,7 @@ describe("Client", function () {
 
 		it("Test team get players", function (done) {
 
-			Client.getTeam(57)
+			Client.getTeamById(57)
 				  .getPlayers()
 				  .then(function (res) {
 
@@ -96,7 +159,7 @@ describe("Client", function () {
 
 		it("Test team get fixtures ", function (done) {
 
-			Client.getTeam(57)
+			Client.getTeamById(57)
 				  .getFixtures()
 				  .then(function (res) {
 

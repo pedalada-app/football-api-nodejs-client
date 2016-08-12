@@ -29,7 +29,7 @@ class FootballApiClient {
 
 	}
 
-	getFixures(options) {
+	getFixtures(options) {
 
 		let apiResource = "/fixtures";
 
@@ -46,7 +46,7 @@ class FootballApiClient {
 	}
 
 
-	getTeam(id) {
+	getTeamById(id) {
 
 		return new TeamClient(this.apiKey, id);
 
