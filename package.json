@@ -1,5 +1,6 @@
 {
   "name": "football-api-client",
+  "version": "1.0.0",
   "main": "./dist/main/index.js",
   "repository": {
     "type": "git",
