@@ -47,16 +47,24 @@ class FootballApiClient {
 
 	getFixures(options) {
 
-		let fixturesResource = "/fixtures";
+		let apiResource = "/fixtures";
+
+		return makeRequest(this.apiKey, apiResource);
 	}
 
-	getFixureById(fixtureId, head2head) {
+	getFixturesById(fixtureId, head2head) {
+
+		let apiResource = "/fixtures/" + fixtureId;
+		let queryParams = head2head ? {head2head: head2head} : undefined;
+
+		return makeRequest(this.apiKey, apiResource, options);
 
 	}
+
 
 	getTeam(id) {
 
-		return new TeamClientWrapper(this.apiKey, id);
+		return new TeamClient(this.apiKey, id);
 
 	}
 
@@ -125,7 +133,7 @@ function makeRequest(apiKey, apiResource, options) {
 		.then(mergeResources);
 }
 
-class TeamClientWrapper {
+class TeamClient {
 
 	constructor(apiKey, id) {
 		this.apiKey = apiKey;
