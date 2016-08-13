@@ -1,6 +1,6 @@
 # Football Data Api Node Js Client
 
-Nodejs client with ECMA6 promises for [a Football Data](https://api.football-data.org)
+Nodejs client with ECMA6 promises for [Football Data](https://api.football-data.org)
 
 Usage:
 
