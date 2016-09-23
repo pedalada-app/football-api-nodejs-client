@@ -14,16 +14,11 @@ function getOptions(apiKey, resource, queryParams) {
 			'X-Response-Control': "minified"
 		},
 		resolveWithFullResponse: true,
-		simple: false,
 		qs: queryParams
 	};
 }
 
 function mergeResponse(response) {
-
-	if (response.statusCode !== 429 && response.statusCode !== 400) {
-		throw new Error("Error : " + response.statusCode)
-	}
 
 	return {
 		data: JSON.parse(response.body),

@@ -46,7 +46,6 @@ class CompetitionClient {
 
 }
 
-
 module.exports = function (apiKey, id) {
 
 	return new CompetitionClient(apiKey, id);
