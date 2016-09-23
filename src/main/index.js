@@ -33,7 +33,7 @@ class FootballApiClient {
 
 		let apiResource = "/fixtures";
 
-		return makeRequest(this.apiKey, apiResource);
+		return makeRequest(this.apiKey, apiResource, options);
 	}
 
 	getFixturesById(fixtureId, head2head) {

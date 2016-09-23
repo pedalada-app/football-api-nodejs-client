@@ -1,7 +1,7 @@
 {
   "name": "football-api-client",
-  "version": "1.0.5",
-  "main": "./src/main/index.js",
+  "version": "1.0.6",
+  "main": "./dist/main/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pedalada-app/football-api-nodejs-client.git"
